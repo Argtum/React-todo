@@ -36,7 +36,7 @@ export default class App extends Component {
           ...todoData.slice(idx + 1)
         ]
       }
-    })
+    });
   };
 
   addItem = (text) => {
@@ -47,7 +47,7 @@ export default class App extends Component {
           this.createTodoItem(text)
         ]
       }
-    })
+    });
   }
 
   toggleProperty = (arr, id, propName) => {

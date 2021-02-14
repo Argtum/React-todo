@@ -1,3 +1,11 @@
 .item-add {
     margin-top: 10px;
 }
+
+.item-add input {
+    margin-right: 4px;
+}
+
+.item-add button {
+    width: 150px;
+}
