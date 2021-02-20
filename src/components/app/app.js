@@ -16,7 +16,7 @@ export default class App extends Component {
       done: false,
       id: this.currentId++
     }
-  }
+  };
 
   state = {
     todoData: [
@@ -26,7 +26,7 @@ export default class App extends Component {
     ],
     filter: 'all',
     search: ''
-  }
+  };
 
   deleteItem = (id) => {
     this.setState(({todoData}) => {
@@ -50,7 +50,7 @@ export default class App extends Component {
         ]
       }
     });
-  }
+  };
 
   toggleProperty = (arr, id, propName) => {
     const idx = arr.findIndex((el) => el.id === id);
@@ -85,7 +85,7 @@ export default class App extends Component {
         filter: filterValue
       }
     })
-  }
+  };
 
   onSearch = (search) => {
     this.setState(() => {
@@ -93,23 +93,32 @@ export default class App extends Component {
         search: search
       }
     })
-  }
+  };
+
+  search = (data, search) => {
+    if (search.length === 0) {
+      return data;
+    }
+
+    return data.filter((el) => el.label.indexOf(search) >= 0);
+  };
+
+  filter = (data, filter) => {
+    switch (filter) {
+      case 'done':
+        return data.filter((el) => el.done);
+      case 'active':
+        return data.filter((el) => !el.done);
+      default:
+        return data;
+    }
+  };
 
   render() {
     const {todoData, filter, search} = this.state;
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
-    let filteredData = todoData;
-
-    if (filter === 'done') {
-      filteredData = todoData.filter((el) => el.done);
-    } else if (filter === 'active') {
-      filteredData = todoData.filter((el) => !el.done);
-    }
-
-    if (search !== '') {
-      filteredData = filteredData.filter((el) => el.label.indexOf(search) >= 0);
-    }
+    const filteredData = this.search(this.filter(todoData, filter), search);
 
     return (
       <div className="todo-app">
