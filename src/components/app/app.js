@@ -100,7 +100,7 @@ export default class App extends Component {
       return data;
     }
 
-    return data.filter((el) => el.label.indexOf(search) >= 0);
+    return data.filter((el) => el.label.toLowerCase().indexOf(search.toLowerCase()) >= 0);
   };
 
   filter = (data, filter) => {
