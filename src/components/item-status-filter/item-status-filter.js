@@ -19,8 +19,8 @@ export default class ItemStatusFilter extends Component {
         <button type="button"
                 className={`btn ${clazz}`}
                 key={name}
-                onClick={() => onChangeFilter(name)}>{label}</button>)
-        ;
+                onClick={() => onChangeFilter(name)}>{label}</button>
+      );
     });
 
     return (
