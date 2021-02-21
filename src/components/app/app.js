@@ -79,20 +79,12 @@ export default class App extends Component {
     })
   };
 
-  changeFilter = (filterValue) => {
-    this.setState(() => {
-      return {
-        filter: filterValue
-      }
-    })
+  changeFilter = (filter) => {
+    this.setState({filter});
   };
 
   onSearch = (search) => {
-    this.setState(() => {
-      return {
-        search: search
-      }
-    })
+    this.setState({search});
   };
 
   search = (data, search) => {
@@ -125,7 +117,7 @@ export default class App extends Component {
         <AppHeader toDo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
           <SearchPanel onSearch = {this.onSearch} />
-          <ItemStatusFilter onChangeFilter = {this.changeFilter} />
+          <ItemStatusFilter onChangeFilter = {this.changeFilter} filter={filter} />
         </div>
         <TodoList
           todos = {filteredData}
